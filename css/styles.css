@@ -78,6 +78,9 @@ button {
 body {
     background-color: var(--body-color);
     color: var(--text-color);
+
+    /* For dark mode animation */
+    transition: background 0.4s;
 }
 
 h1,
@@ -102,13 +105,62 @@ img {
 }
 
 /*=============== THEME ===============*/
+.nav__buttons {
+    display: flex;
+    align-items: center;
+    column-gap: 1.25rem;
+}
+
+.change-theme {
+    font-size: 1.5rem;
+    color: var(--title-color);
+    cursor: pointer;
+}
 
 /*========== Variables Dark theme ==========*/
+body.dark-theme {
+    --title-color: hsl(260, 64%, 85%);
+    --text-color: hsl(260, 20%, 65%);
+    --body-color: hsl(260, 64%, 10%);
+    --container-color: hsl(260, 32%, 24%);
+}
 
 /*========== 
 	Color changes in some parts of 
 	the website, in dark theme
 ==========*/
+.dark-theme .blur-header::after,
+.dark-theme .nav__menu {
+    background-color: hsla(0, 0%, 10%, 0.3);
+}
+
+.dark-theme .list__blob {
+    background-color: var(--container-color);
+}
+
+.dark-theme :is(.follow__content-1, .follow__content-2) img {
+    border: 5px solid var(--container-color);
+}
+
+.dark-theme .join__input {
+    color: hsl(260, 80%, 18%);
+}
+
+.dark-theme .footer {
+    background-color: var(--body-color);
+}
+
+.dark-theme::-webkit-scrollbar {
+    background-color: hsl(260, 32%, 15%);
+}
+
+.dark-theme::-webkit-scrollbar-thumb {
+    background-color: hsl(260, 16%, 25%);
+}
+
+.dark-theme::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(260, 16%, 35%);
+}
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
@@ -145,6 +197,9 @@ img {
     top: 0;
     left: 0;
     z-index: var(--z-fixed);
+
+    /* For dark mode animation */
+    transition: background 0.4s;
 }
 
 .nav {
@@ -232,10 +287,10 @@ img {
 
 /* Active link */
 .active-link {
-	background: var(--gradient-color);
-	background-clip: text;
-	-webkit-background-clip: text;
-	color: transparent;
+    background: var(--gradient-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 /*=============== HOME ===============*/
@@ -362,6 +417,9 @@ img {
     border-radius: 12.5rem;
     justify-content: center;
     align-items: center;
+
+    /* For dark mode animation */
+    transition: background 0.4s;
 }
 
 .list__blob img {
@@ -439,6 +497,9 @@ img {
     align-items: center;
     column-gap: 0.5rem;
     position: absolute;
+
+    /* For dark mode animation */
+    transition: background 0.4s;
 }
 
 .health__icon {
@@ -510,6 +571,9 @@ img {
     top: 0;
     left: 0;
     z-index: 1;
+
+    /* For dark mode animation */
+    transition: border 0.4s;
 }
 
 .routine__img-2 {
@@ -528,6 +592,9 @@ img {
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
+
+    /* For dark mode animation */
+    transition: background 0.4s;
 }
 
 .routine__icon,
@@ -584,6 +651,9 @@ img {
 .follow__content-2 img {
     border-radius: 12.5rem;
     border: 5px solid var(--first-color-light);
+
+    /* For dark mode animation */
+    transition: border 0.4s;
 }
 
 .follow__content-1 {
@@ -787,9 +857,104 @@ img {
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
+@media screen and (max-width: 345px) {
+    .container {
+        margin-inline: 1rem;
+    }
+
+    .follow__img-3 {
+        transform: translateX(0) rotate(15deg);
+    }
+
+    .follow__img-4 {
+        transform: translateX(0) rotate(-15deg);
+    }
+
+    .home__title {
+        font-size: 2rem;
+    }
+
+    .list__content {
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+
+    .routine__images {
+        width: 250px;
+    }
+}
 
 /* For medium devices */
+@media screen and (min-width: 576px) {
+    .home__container,
+    .list__container,
+    .health__container,
+    .routine__container,
+    .follow__container,
+    .join__container {
+        grid-template-columns: 350px;
+        justify-content: center;
+    }
+}
 
+@media screen and (min-width: 767px) {
+    .nav {
+        column-gap: 4.5rem;
+    }
+
+    .nav__toggle,
+    .nav__close {
+        display: none;
+    }
+
+    .nav__list {
+        display: flex;
+        column-gap: 4.5rem;
+    }
+
+    .nav__menu {
+        margin-left: auto;
+    }
+
+    .dark-theme .nav__menu {
+        background-color: transparent;
+    }
+
+    .join__container {
+        grid-template-columns: 600px;
+    }
+
+    .join__content {
+        padding-inline: 3rem;
+    }
+
+    .join__form {
+        display: flex;
+        column-gap: 1rem;
+        background-color: var(--white-color);
+        padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+		border-radius: 4rem;
+    }
+
+	.join__input {
+		padding: 0;
+		margin: 0;
+	}
+
+	.join__button {
+		padding-block: 1rem;
+		width: initial;
+	}
+
+	.footer__content {
+		grid-template-columns: repeat(2, max-content);
+		justify-content: space-between;
+	}
+
+	.footer__data {
+		grid-template-columns: repeat(3, max-content);
+	}
+}
 /* For large devices */
 
 /* For 2K resolutions (2048 x 1152, 2048 x 1536) */
